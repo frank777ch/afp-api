@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  afp-api:
+    container_name: afp_api_service
+    build: .
+    ports:
+      - "8050:8000"
+    volumes:
+      - .:/app
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
